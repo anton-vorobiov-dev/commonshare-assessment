@@ -17,7 +17,6 @@ describe('Auth Store', () => {
   })
 
   it('sets user and token on login()', async () => {
-    // мокуємо $fetch відповідь
     const fakeUser = { id: '1', name: 'Alice', role: 'viewer' }
     vi.stubGlobal('$fetch', vi.fn().mockResolvedValue({
       user: fakeUser,

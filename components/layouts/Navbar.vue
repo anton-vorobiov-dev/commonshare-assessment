@@ -1,7 +1,6 @@
 <template>
   <header class="flex items-center justify-between bg-white shadow px-4 h-16">
     <div class="flex items-center">
-      <!-- Бургер лише на маленьких екранах -->
       <button
         @click="$emit('toggleSidebar')"
         class="p-2 lg:hidden focus:outline-none"

@@ -12,7 +12,6 @@
       <!-- Navbar -->
       <Navbar @toggleSidebar="sidebarOpen = !sidebarOpen" />
 
-      <!-- Тут рендериться кожна сторінка -->
       <main class="flex-1 overflow-auto p-4">
         <NuxtPage />
       </main>

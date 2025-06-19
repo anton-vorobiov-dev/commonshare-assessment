@@ -1,7 +1,6 @@
 import { beforeAll, afterAll, vi } from 'vitest'
 
 beforeAll(() => {
-  // mock для localStorage
   const storage: Record<string, string> = {}
   vi.stubGlobal('localStorage', {
     getItem: (key: string) => storage[key] ?? null,

@@ -1,7 +1,6 @@
 // stores/auth.ts
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore(
   'auth',
@@ -26,10 +25,8 @@ export const useAuthStore = defineStore(
         })
         user.value  = res.user
         token.value = res.token
-        // Після успішного логіну переходимо на головну сторінку
       } catch (err) {
-        // можна викинути помилку в компонент для відображення
-        throw new Error('Невірні облікові дані')
+        throw new Error('Bad credentials')
       }
     }
 

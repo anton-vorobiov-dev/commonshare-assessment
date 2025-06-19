@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "test:unit": "vitest --dir tests/unit",
-    "test:integration": "vitest --dir tests/integration"
+    "test:integration": "vitest --dir tests/integration",
+    "lint": "eslint --ext .js,.ts,.vue ."
   },
   "dependencies": {
     "@nuxt/eslint": "^1.4.1",
