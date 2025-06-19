@@ -1,7 +1,7 @@
 // middleware/admin.ts
 import { useAuthStore } from '~/stores/auth'
 
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(() => {
   const auth = useAuthStore()
   // тільки admin може далі
   if (!auth.isAdmin) {

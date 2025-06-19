@@ -22,7 +22,7 @@ const perPage = 10
 // Computed: filtered list
 const filteredUsers = computed(() => {
   return users.value
-    .filter(u => {
+    .filter((u: User) => {
       const matchText = u.name.toLowerCase().includes(search.value.toLowerCase())
         || u.email.toLowerCase().includes(search.value.toLowerCase())
       const matchCountry = selectedCountry.value
@@ -35,11 +35,11 @@ const filteredUsers = computed(() => {
 // Computed: unique countries sorted by frequency
 const countryCounts = computed(() => {
   const map = new Map<string, number>()
-  users.value.forEach(u => map.set(u.country, (map.get(u.country) || 0) + 1))
+  users.value.forEach((u: User) => map.set(u.country, (map.get(u.country) || 0) + 1))
   return Array.from(map.entries())
 })
 const countries = computed<string[]>(() =>
-  countryCounts.value
+  [...countryCounts.value]
     .sort((a, b) => b[1] - a[1])
     .map(([name]) => name)
 )
@@ -74,7 +74,7 @@ function nextPage() {
         type="text"
         class="users__search border rounded-lg focus:outline-none focus:ring cursor-text py-2 px-3"
         placeholder="Search by name or email"
-      />
+      >
 
       <label for="filter" class="sr-only">Filter by country</label>
       <select

@@ -1,14 +1,14 @@
 import { mount, RouterLinkStub } from '@vue/test-utils'
-import { describe, it, expect, vi, beforeAll } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { createTestingPinia } from '@pinia/testing'
+
+import Navbar from '~/components/layouts/Navbar.vue'
+import { useAuthStore } from '~/stores/auth'
 
 // 1) mock vue-router’s useRouter before importing the component
 vi.mock('vue-router', () => ({
   useRouter: () => ({ push: vi.fn() })
 }))
-
-import Navbar from '~/components/layouts/Navbar.vue'
-import { useAuthStore } from '~/stores/auth'
 
 describe('Navbar.vue', () => {
   it('renders greeting and calls logout when Logout button clicked', async () => {

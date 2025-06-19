@@ -3,8 +3,12 @@
   
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],
@@ -12,7 +16,7 @@
     },
     "types": [
       "nuxt/schema",       
-      "@pinia/nuxt",       
+      "@pinia/nuxt"       
     ]
   }
 }

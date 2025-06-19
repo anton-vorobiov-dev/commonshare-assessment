@@ -3,14 +3,14 @@
     <!-- Sidebar -->
     <Sidebar
       :open="sidebarOpen"
-      @close="sidebarOpen = false"
       class="fixed inset-y-0 left-0 lg:static lg:translate-x-0 z-20 transition-transform"
+      @close="sidebarOpen = false"
     />
 
     <!-- Main area -->
     <div class="flex-1 flex flex-col">
       <!-- Navbar -->
-      <Navbar @toggleSidebar="sidebarOpen = !sidebarOpen" />
+      <Navbar @toggle-sidebar="sidebarOpen = !sidebarOpen" />
 
       <main class="flex-1 overflow-auto p-4">
         <NuxtPage />

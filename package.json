@@ -17,6 +17,7 @@
     "@nuxt/eslint": "^1.4.1",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.0",
     "@pinia/nuxt": "^0.11.1",
+    "@tailwindcss/vite": "^4.1.10",
     "eslint": "^9.29.0",
     "nuxt": "^3.17.5",
     "pinia-plugin-persistedstate": "^4.3.0",

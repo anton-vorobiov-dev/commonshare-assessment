@@ -1,7 +1,7 @@
 // middleware/auth.ts
 import { useAuthStore } from '~/stores/auth'
 
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(() => {
   const auth = useAuthStore()
   // якщо не залогінений — відправляємо на сторінку логіну
   if (!auth.isLoggedIn) {

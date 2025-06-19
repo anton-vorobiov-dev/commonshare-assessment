@@ -21,8 +21,8 @@ async function handleSubmit() {
     await auth.login(email.value, password.value)
     // login action handles redirection
     if (auth.isLoggedIn) router.push('/')
-  } catch (err: any) {
-    errorMessage.value = err.message || 'Login failed'
+  } catch (err: {message?: string} | null) {
+    errorMessage.value = err?.message || 'Login failed'
   } finally {
     loading.value = false
   }
@@ -31,7 +31,7 @@ async function handleSubmit() {
 
 <template>
   <section class="login">
-    <h1 class="login__title text-2xl font-bold my-6 w-full text-center" id="login-title">Login</h1>
+    <h1 id="login-title" class="login__title text-2xl font-bold my-6 w-full text-center">Login</h1>
     <form
       class="login__form max-w-md mx-auto bg-white shadow rounded-lg p-6 flex flex-col gap-6"
       aria-labelledby="login-title"
@@ -47,7 +47,7 @@ async function handleSubmit() {
           placeholder="Enter your email"
           class="login__input p-2 border rounded-lg focus:outline-none focus:ring"
           aria-required="true"
-        />
+        >
       </div>
       <div class="login__field flex flex-col gap-2">
         <label for="password" class="login__label font-medium">Password</label>
@@ -59,7 +59,7 @@ async function handleSubmit() {
           placeholder="Enter your password"
           class="login__input p-2 border rounded-lg focus:outline-none focus:ring"
           aria-required="true"
-        />
+        >
       </div>
       <div v-if="errorMessage" role="alert" class="login__error text-red-600 font-medium">
         {{ errorMessage }}

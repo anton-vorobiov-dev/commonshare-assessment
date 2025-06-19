@@ -6,13 +6,13 @@
       open ? 'translate-x-0 w-full backdrop-blur-[2px]' : '-translate-x-full',
       'lg:translate-x-0 lg:static fixed inset-y-0 left-0 transition-transform'
     ]"
-    @click.self="$emit('close')"
+    @click.self="emit('close')"
   >
     <nav class="bg-gray-800 text-white w-64 h-full space-y-2 p-4">
       <NuxtLink 
         to="/" 
         class="text-xl font-semibold block py-2 px-3 mb-4"
-        @click.native="$emit('close')"
+        @click.self="emit('close')"
       > 
         CommonShare
       </NuxtLink>
@@ -21,7 +21,7 @@
         class="block py-2 px-3 rounded hover:bg-gray-700 hover:scale-105 transition-[scale]"
         :class="{ 'bg-gray-700': $route.path === '/' }"
         aria-current="$route.path === '/' ? 'page' : undefined"
-        @click.native="$emit('close')"
+        @click.self="emit('close')"
       >
         Dashboard
       </NuxtLink>
@@ -31,7 +31,7 @@
         class="block py-2 px-3 rounded hover:bg-gray-700 hover:scale-105 transition-[scale]"
         :class="{ 'bg-gray-700': $route.path === '/users' }"
         aria-current="$route.path === '/users' ? 'page' : undefined"
-        @click.native="$emit('close')"
+        @click.self="emit('close')"
       >
         Users
       </NuxtLink>
@@ -43,5 +43,6 @@
 import { useAuthStore } from '~/stores/auth'
 
 const auth = useAuthStore()
-const props = defineProps<{ open: boolean }>()
+defineProps<{ open: boolean }>()
+const emit = defineEmits(['close'])
 </script>

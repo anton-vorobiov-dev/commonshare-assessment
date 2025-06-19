@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
 
   compatibilityDate: '2025-05-15',
@@ -15,10 +17,32 @@ export default defineNuxtConfig({
       ],
     },
   },
+  
+  runtimeConfig: {
+    public: {
+      apiBase: '/api',
+      appName: 'CommonShare',
+      appVersion: '1.0.0',
+    },
+  },
 
   devtools: { enabled: true },
-  
-  css: ['~/assets/scss/main.scss'],
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+  },
+
+  css: [
+    '~/assets/scss/main.scss',
+    '~/assets/css/main.css'
+  ],
+  postcss: {
+    plugins: {
+      '@tailwindcss/postcss': {},
+      autoprefixer: {}
+    }
+  },
 
   modules: [
     '@nuxt/eslint',

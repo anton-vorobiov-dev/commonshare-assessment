@@ -26,7 +26,7 @@ export const useAuthStore = defineStore(
         user.value  = res.user
         token.value = res.token
       } catch (err) {
-        throw new Error('Bad credentials')
+        throw new Error('Bad credentials', { cause: err })
       }
     }
 

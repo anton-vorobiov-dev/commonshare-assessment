@@ -6,7 +6,7 @@ import type { User } from '../types'
 definePageMeta({ middleware: ['auth'] })
 
 // Fetch users with default empty array
-const { data: users, error } = await useFetch<User[]>('/api/users', {
+const { data: users } = await useFetch<User[]>('/api/users', {
   key: 'apiUsers',
   dedupe: 'defer',
   default: () => [] as User[],
@@ -14,26 +14,25 @@ const { data: users, error } = await useFetch<User[]>('/api/users', {
 
 // Computed metrics
 const totalUsers = computed(() => users.value.length)
-const adminsCount = computed(() => users.value.filter(u => u.role === 'admin').length)
-const viewersCount = computed(() => users.value.length - adminsCount.value)
+const adminsCount = computed(() => users.value.filter((u: User) => u.role === 'admin').length)
 const percentAdmins = computed(() =>
   totalUsers.value ? Math.round((adminsCount.value / totalUsers.value) * 100) : 0
 )
 const percentViewers = computed(() => (totalUsers.value ? 100 - percentAdmins.value : 0))
 const averageAge = computed(() =>
   totalUsers.value
-    ? users.value.reduce((sum, u) => sum + u.age, 0) / totalUsers.value
+    ? users.value.reduce((sum: number, u: User) => sum + u.age, 0) / totalUsers.value
     : 0
 )
 
 // Top 5 countries
 const countryCounts = computed(() => {
   const map = new Map<string, number>()
-  users.value.forEach(u => map.set(u.country, (map.get(u.country) || 0) + 1))
+  users.value.forEach((u: User) => map.set(u.country, (map.get(u.country) || 0) + 1))
   return Array.from(map.entries()).map(([name, count]) => ({ name, count }))
 })
 const topCountries = computed(() =>
-  countryCounts.value.sort((a, b) => b.count - a.count).slice(0, 5)
+  [...countryCounts.value].sort((a, b) => b.count - a.count).slice(0, 5)
 )
 </script>
 
@@ -42,7 +41,8 @@ const topCountries = computed(() =>
     <h1 id="dashboard-title" class="dashboard__title text-2xl font-bold mb-6">Dashboard</h1>
 
     <!-- Metrics -->
-    <div class="dashboard__metrics grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" 
+    <div
+class="dashboard__metrics grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" 
     role="region" aria-labelledby="total-users-label" >
       <div class="dashboard__metric-card p-4 bg-white shadow rounded-lg">
         <p class="dashboard__metric-label text-sm font-medium text-gray-500">Total Users</p>
@@ -78,3 +78,6 @@ const topCountries = computed(() =>
     </div>
   </section>
 </template>
+
+<style scoped lang="scss">
+</style>
