@@ -89,7 +89,7 @@ A data-driven admin dashboard for the CommonShare impact-investing platform, bui
 
 ### Prerequisites
 
-- Node.js 16+ (we test on 16, 18, and 20 in CI)
+- Node.js 18+ (we test on 18 and 20 in CI)
 - npm (or pnpm/yarn)
 
 ### Install & Dev
