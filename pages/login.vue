@@ -4,7 +4,7 @@ import { useAuthStore } from '~/stores/auth'
 import { useRouter } from 'vue-router'
 
 // No middleware for login page; redirect if already authenticated
-definePageMeta({ layout: 'empty', middleware: [] })
+definePageMeta({ layout: '', middleware: [] })
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -21,8 +21,12 @@ async function handleSubmit() {
     await auth.login(email.value, password.value)
     // login action handles redirection
     if (auth.isLoggedIn) router.push('/')
-  } catch (err: {message?: string} | null) {
-    errorMessage.value = err?.message || 'Login failed'
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      errorMessage.value = err.message
+    } else {
+      errorMessage.value = 'Login failed'
+    }
   } finally {
     loading.value = false
   }
@@ -43,6 +47,7 @@ async function handleSubmit() {
           id="email"
           v-model="email"
           type="email"
+          autocomplete="username"
           required
           placeholder="Enter your email"
           class="login__input p-2 border rounded-lg focus:outline-none focus:ring"
@@ -55,6 +60,7 @@ async function handleSubmit() {
           id="password"
           v-model="password"
           type="password"
+          autocomplete="current-password"
           required
           placeholder="Enter your password"
           class="login__input p-2 border rounded-lg focus:outline-none focus:ring"

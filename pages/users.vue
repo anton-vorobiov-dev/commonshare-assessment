@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import type { User } from '~/types'
+import type { User } from '~/types/user'
 
 // Protect route: only authenticated admins
 definePageMeta({ middleware: ['auth', 'admin'] })
