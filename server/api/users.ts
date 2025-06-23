@@ -1,11 +1,9 @@
-import { promises as fs } from 'fs'
-import { join } from 'path'
 import { defineEventHandler } from 'h3'
+import type { ApiUser } from '~/types/user'
+import rawUsers from '../data/users.json'
 
 export default defineEventHandler(async () => {
-  const filePath = join(process.cwd(), 'server/data/users.json')
-  const json     = await fs.readFile(filePath, 'utf-8')
-  const users    = JSON.parse(json) as Array<Record<string, string | number>>
+  const users = rawUsers as ApiUser[]
 
   // remove password field
   return users.map(({ password, ...safe }) => safe)
