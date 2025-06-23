@@ -1,6 +1,7 @@
 # CommonShare Dashboard
 
 A data-driven admin dashboard for the CommonShare impact-investing platform, built with Nuxt 3, Vue 3, Tailwind CSS, SCSS (BEM), Pinia, and Vitest. Provides secure login, user metrics, country rankings, and a paginated/searchable user table.
+[Check it online!](https://commonshare-assessment.vercel.app/ "deployed on Vercel")
 
 ---
 
@@ -132,6 +133,7 @@ Continuous Integration is configured in `.github/workflows/ci.yml`:
 - **Matrix** builds on Node 18, 20+
 - **Jobs**: lint → unit & integration tests → production build
 - **Concurrency**: cancels in-progress runs on new commits
+- **Deployment:** deploy on vercel.app - [https://commonshare-assessment.vercel.app/](https://commonshare-assessment.vercel.app/)
 
 ---
 
