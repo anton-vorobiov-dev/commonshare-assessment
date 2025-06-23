@@ -129,7 +129,7 @@ See [docs/api.md](./docs/api.md) for full request/response specs and examples.
 
 Continuous Integration is configured in `.github/workflows/ci.yml`:
 
-- **Matrix** builds on Node 16, 18, 20+
+- **Matrix** builds on Node 18, 20+
 - **Jobs**: lint → unit & integration tests → production build
 - **Concurrency**: cancels in-progress runs on new commits
 
